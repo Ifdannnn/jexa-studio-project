@@ -3,7 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
 import { projects } from '../data/projects';
-import CTASection from '../components/home/CTASection';
+import CTASection from '../components/common/CTASection';
+import ScrollReveal from '../components/common/ScrollReveal';
 
 const ProjectDetail = () => {
     const { id } = useParams();
@@ -86,7 +87,10 @@ const ProjectDetail = () => {
                     alt={project.title}
                     className="w-full h-full object-cover opacity-60"
                 />
-                <div className="absolute inset-0 flex flex-col justify-center items-center text-center p-4">
+                <ScrollReveal
+                    className="absolute inset-0 flex flex-col justify-center items-center text-center p-4"
+                    animation="fade-in"
+                >
                     <span className="text-white/80 uppercase tracking-[0.2em] mb-4 text-sm font-medium border border-white/30 px-4 py-1 rounded-full">
                         {project.category}
                     </span>
@@ -94,37 +98,44 @@ const ProjectDetail = () => {
                         {project.title}
                     </h1>
                     <p className="text-lg text-white/90">{project.location}</p>
-                </div>
+                </ScrollReveal>
             </div>
 
             {/* ================= CONTENT ================= */}
-            <section className="py-20">
+            <section className="py-20 bg-light">
                 <div className="container mx-auto px-4 md:px-8">
 
                     <div className="flex flex-col lg:flex-row gap-16">
 
                         <div className="w-full lg:w-2/3">
-                            <h2 className="text-3xl font-bold mb-6">About the Project</h2>
-                            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-                                {project.description}
-                            </p>
+                            <ScrollReveal animation="fade-up">
+                                <h2 className="text-3xl text-primary font-bold mb-6">About the Project</h2>
+                                <p className="text-gray-600 text-lg mb-8 leading-relaxed space-y-6">
+                                    <p className="text-lg font-semibold">{project.scope}</p>
+                                    <p>{project.description} </p>
+                                    <p>{project.challenge}</p>
+                                    <p>{project.solution}</p>
+                                </p>
+                            </ScrollReveal>
                         </div>
 
                         {/* Desktop Gallery */}
                         <div className="hidden lg:block w-full lg:w-1/3">
-                            <div className="bg-accent/20 p-8 rounded-sm border-l-4 border-primary">
-                                <h3 className="text-xl font-bold mb-6">Project Gallery</h3>
-                                <div className="grid grid-cols-1 gap-4">
-                                    {project.gallery.map((img, idx) => (
-                                        <img
-                                            key={idx}
-                                            src={img}
-                                            alt=""
-                                            className="w-full h-48 object-cover rounded-sm"
-                                        />
-                                    ))}
+                            <ScrollReveal animation="fade-up" delay={0.2}>
+                                <div className="bg-accent/20 p-8 rounded-sm border-l-4 border-primary">
+                                    <h3 className="text-xl font-bold mb-6">Project Gallery</h3>
+                                    <div className="grid grid-cols-1 gap-4">
+                                        {project.gallery.map((img, idx) => (
+                                            <img
+                                                key={idx}
+                                                src={img}
+                                                alt=""
+                                                className="w-full h-48 object-cover rounded-sm"
+                                            />
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
+                            </ScrollReveal>
                         </div>
 
                     </div>
@@ -132,21 +143,23 @@ const ProjectDetail = () => {
             </section>
 
             {/* ================= MOBILE SLIDER + NAV ================= */}
-            <section className="lg:hidden py-12 bg-gradient-to-b from-white to-gray-50">
+            <section className="lg:hidden py-12 bg-light">
                 <div className="container mx-auto px-4">
 
-                    <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6">
-                        {project.gallery.map((img, idx) => (
-                            <div
-                                key={idx}
-                                className="relative min-w-[85%] snap-center flex-shrink-0
-                                rounded-lg overflow-hidden border border-primary/20"
-                            >
-                                <img src={img} alt="" className="w-full h-64 object-cover" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-                            </div>
-                        ))}
-                    </div>
+                    <ScrollReveal animation="fade-up">
+                        <div className="flex overflow-x-auto snap-x snap-mandatory gap-4 pb-6">
+                            {project.gallery.map((img, idx) => (
+                                <div
+                                    key={idx}
+                                    className="relative min-w-[85%] snap-center flex-shrink-0
+                                    rounded-lg overflow-hidden border border-primary/20"
+                                >
+                                    <img src={img} alt="" className="w-full h-64 object-cover" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                                </div>
+                            ))}
+                        </div>
+                    </ScrollReveal>
 
                     <div className="mt-6">
                         <ProjectNavigation />
@@ -156,13 +169,15 @@ const ProjectDetail = () => {
             </section>
 
             {/* ================= DESKTOP NAV ================= */}
-            <section className="hidden lg:block py-12 border-t border-gray-100">
+            <section className="hidden lg:block py-12 border-t border-accent bg-light">
                 <div className="container mx-auto px-4 md:px-8">
                     <ProjectNavigation />
                 </div>
             </section>
 
-            <CTASection />
+            <ScrollReveal animation="fade-up" delay={0.1}>
+                <CTASection />
+            </ScrollReveal>
         </>
     );
 };
