@@ -1,3 +1,8 @@
+#sensitive 
+build_log.txt
+out.txt
+.env
+
 # Logs
 logs
 *.log
