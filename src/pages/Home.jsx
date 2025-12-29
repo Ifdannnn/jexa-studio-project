@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import { projects } from '../data/projects';
 import CTASection from '../components/common/CTASection';
 import ScrollReveal from '../components/common/ScrollReveal';
+import Testimonials from "../components/section/testimonialSection";
+
 
 const Home = () => {
     return (
@@ -27,7 +29,7 @@ const Home = () => {
                     </div>
 
                     {/* Content */}
-                    <div className="relative z-10 container mx-auto px-6 pt-32 pb-24 flex items-center min-h-screen">
+                    <div className="relative z-10 container mx-auto px-6 pt-32 pb-24 text-center flex flex-col items-center min-h-screen max-w-7xl mb-6 ">
                         <motion.div
                             initial={{ opacity: 0, y: 24 }}
                             animate={{ opacity: 1, y: 0 }}
@@ -40,21 +42,23 @@ const Home = () => {
                             </span>
 
                             {/* Headline */}
-                            <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight mb-6">
-                                Interior & Custom Furniture <br />
-                                <span className="italic text-primary font-family: 'Plus Jakarta Sans', sans-serif">
-                                    Designed for Modern Living
-                                </span>
-                            </h1>
+                            <div className="space-y-2 md:space-y-4 mb-6">
+                                <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+                                    Transform Spaces Into
+                                </h1>
+                                <h2 className=" text-4xl md:text-6xl italic text-primary font-family: 'Plus Jakarta Sans', sans-serif">
+                                    Experience
+                                </h2>
+                            </div>
 
                             {/* Description */}
-                            <p className="text-base md:text-lg text-gray-200 mb-10 leading-relaxed max-w-xl">
+                            <p className="text-base md:text-lg text-gray-200 mb-10 leading-relaxed max-w-2xl">
                                 Premium interior design & bespoke furniture solutions that elevate
                                 comfort, aesthetics, and functionality in every space.
                             </p>
 
                             {/* CTA */}
-                            <div className="flex flex-col sm:flex-row gap-4">
+                            <div className="item-center justify-center flex flex-col sm:flex-row gap-4">
                                 <Button to="/contact" variant="primary">
                                     Free Consultation
                                 </Button>
@@ -254,38 +258,7 @@ const Home = () => {
             </ScrollReveal>
 
             {/* Testimonials Section */}
-            <ScrollReveal animation="fade-up" delay={0.1}>
-                <section className="py-20 bg-dark text-white relative overflow-hidden">
-                    {/* Background Pattern */}
-                    <div className="absolute top-0 right-0 p-12 opacity-10 text-white pointer-events-none">
-                        <Quote size={200} />
-                    </div>
-
-                    <div className="container mx-auto px-4 md:px-8 relative z-10">
-                        <div className="max-w-4xl mx-auto text-center">
-                            <div className="flex justify-center mb-8 text-primary">
-                                {[1, 2, 3, 4, 5].map((s) => <Star key={s} fill="currentColor" size={24} />)}
-                            </div>
-
-                            <blockquote className="text-2xl md:text-3xl font-light leading-relaxed mb-10 font-body italic">
-                                "Jexa Studio transformed our office into a space that truly reflects our brand's values. The attention to detail, premium materials, and professionalism exceeded all our expectations. It's not just an office; it's a statement."
-                            </blockquote>
-
-                            <div>
-                                <h4 className="text-xl font-bold font-sans">Sarah Anderson</h4>
-                                <p className="text-gray-400 text-sm uppercase tracking-widest mt-1">CEO, TechVenture Indonesia</p>
-                            </div>
-
-                            {/* Navigation Dots (Visual Only for MVP) */}
-                            <div className="flex justify-center gap-3 mt-12">
-                                <button className="w-3 h-3 rounded-full bg-primary"></button>
-                                <button className="w-3 h-3 rounded-full bg-white/20 hover:bg-white/40"></button>
-                                <button className="w-3 h-3 rounded-full bg-white/20 hover:bg-white/40"></button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </ScrollReveal>
+            <Testimonials />
 
             <ScrollReveal animation="fade-up" delay={0.1}>
                 <CTASection />
